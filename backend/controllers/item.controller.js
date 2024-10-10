@@ -1,0 +1,46 @@
+import Item from '../models/item.model.js';
+
+export const createItem = async (req, res) => {
+    try{
+        const { text } = req.body;
+        const newItem = new Item({text});
+        const savedItem = await newItem.save();
+        res.status(201).json(savedItem);
+    }catch(error){
+        res.status(500).json({message: error.message});
+    }
+};
+
+export const getItems = async (req, res) => {
+    try {
+        const items = await item.find().sort()({createdAt: -1});
+        res.json(items);
+    }catch(error) {
+        res.status(500).json({message: error.message});
+    }
+};
+
+export const updateItem = async(req, res) => {
+    try {
+        const {id} = req.params;
+        const {text, isCompleted} = req.body;
+        const updatedItem = await Item.findByIdAndUpdate(
+            id,
+            {text, isCompleted},
+            {new: true}
+        );
+        if(!updatedItem){
+            return res.status(404).json({message: "item not found"});
+        }
+        res.json(updatedItem);
+    }catch(error){
+        res.status(500).json({message: error.message});
+    }
+};
+
+export const deleteItem = async(req, res) => {
+    try {
+        const {id} = req.params;
+        const {text, isCompleted}
+    }
+}
