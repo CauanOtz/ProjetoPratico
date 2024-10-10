@@ -41,6 +41,20 @@ export const updateItem = async(req, res) => {
 export const deleteItem = async(req, res) => {
     try {
         const {id} = req.params;
-        const {text, isCompleted}
+        const deletedItem = await item.findByIdAndUpdate(id);
+        if(!deletedItem) {
+            return res.status(404).json({message: "item not found."});
+        }
+    }catch (error){
+        res.status(500).json({message: error.message});
+    }
+};
+
+export const deleteAllItems = async(req, res) => {
+    try {
+        await Item.deleteMany({});
+        res.json({message: "All items deleted successfully"});
+    }catch(error){
+        res.status(500).json({message: error.message});
     }
 }
