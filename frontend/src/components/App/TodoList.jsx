@@ -128,9 +128,9 @@ function TodoList() {
         </button>
       </form>
       <div className="listaTarefas">
-        <div style={{ textAlign: "center" }}>
+        <div style={{ textAlign: "center",}}>
           {lista.length < 1 ? (
-            <img className="icone-central" src={Icone} alt="Ícone" />
+            <img className="icone-central" src="https://cdn-icons-gif.flaticon.com/16678/16678397.gif" alt="Ícone" />
           ) : (
             lista.map((item) => (
               <div
